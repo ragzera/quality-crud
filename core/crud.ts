@@ -6,6 +6,8 @@ const DB_FILE_PATH = "./core/db";
 
 console.log("[CRUD]");
 
+type UUID = string;
+
 interface Todo {
   id: string;
   date: string;

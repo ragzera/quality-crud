@@ -1,1 +1,14 @@
-Eu vou usar pnpm em vez de npm!!!
+{
+  "todos": [
+    {
+      "date": "2024-04-28T00:40:19.012Z",
+      "content": "Primeira TODO",
+      "done": false
+    },
+    {
+      "date": "2024-04-28T00:40:19.013Z",
+      "content": "Segunda TODO",
+      "done": false
+    }
+  ]
+}

@@ -72,6 +72,32 @@ function update(id: string, partialTodo: Partial<Todo>): Todo {
   return updatedTodo;
 }
 
+function deleteById(id: string): void {
+  const todos = read();
+
+  const todosMinusOne = todos.filter((todo: Todo) => {
+    if (id == todo.id) {
+      return false;
+    }
+    return true;
+  });
+
+  if (todosMinusOne.length === todos.length) {
+    throw new Error("Please, provide a valid id for deletion");
+  }
+
+  fs.writeFileSync(
+    DB_FILE_PATH,
+    JSON.stringify(
+      {
+        todos: todosMinusOne,
+      },
+      null,
+      2
+    )
+  );
+}
+
 function updateContentById(id: string, content: string): Todo {
   return update(id, { content });
 }
@@ -83,7 +109,9 @@ function CLEAR_DB() {
 // [SIMULATION]
 CLEAR_DB();
 create("Primeira TODO");
-create("Segunda TODO");
+const secondTodo = create("Segunda TODO");
+deleteById(secondTodo.id);
+
 const thirdTodo = create("TODO 3");
 update(thirdTodo.id, {
   content: "Terceira TODO atualizada",
